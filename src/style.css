@@ -1,0 +1,114 @@
+.app {
+    text-align: center;
+  }
+
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+  }
+  
+.home {
+    padding: 20px;
+    background-color: #fff;
+  }
+
+.heading {
+    text-align: center;
+  }
+  
+.task-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+.task-input {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+.add-task-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+.add-task-button:hover {
+    background-color: #218838;
+  }
+  
+.task-sections {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+.task-section {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 30%;
+    padding: 10px;
+  }
+  
+.task-section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+.task-list li {
+  display: flex;
+  padding: 10px;
+  list-style:disc;
+  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list li button {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.task-list li button:nth-child(2), .task-list li button:nth-child(3) {
+  margin-left: 3px;
+}
+
+.to-list li button:first-child {
+  background-color: #2a5ddf;
+}
+
+.to-list li button:nth-child(2) {
+  background-color: #dc3545;  
+}
+
+.on-list li button:first-child {
+  background-color: #18a043;
+}
+
+.on-list li button:nth-child(2) {
+  background-color: #dc3545;
+  margin-left:6px;
+}
+.done-list li button:first-child {
+  background-color: #2a5ddf;
+}
+
+.done-list li button:nth-child(2) {
+  background-color: #18a043;
+  margin-left:6px;
+}
+
+.task-list li button:last-child {
+  background-color: #282223;
+}
