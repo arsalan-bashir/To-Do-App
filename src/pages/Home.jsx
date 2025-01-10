@@ -37,10 +37,19 @@ export default function Home() {
 
   // Delete task from a category
   const deleteTask = (category, taskName) => {
-    setTaskList((prevTaskList) => ({
-      ...prevTaskList,
-      [category]: prevTaskList[category].filter((task) => task !== taskName)
-    }));
+    setTaskList((prevTaskList) => {
+      const updatedCurrent = prevTaskList[category].filter(
+        (task) => task !== taskName
+      );
+      return {...prevTaskList, [category]: updatedCurrent};
+    });
+  }
+
+  // Clear all tasks from a category
+  const clearTasks = (category, tasks) => {
+    setTaskList((prevTaskList) => {
+      return {...prevTaskList, [category]: []};
+    });
   }
 
   return (
@@ -74,7 +83,9 @@ export default function Home() {
                 <li key={index}>
                   {task}
                 <span>
-                  <button onClick={() => moveTask('todo', 'ongoing', task)}>
+                  <button 
+                  className='clear-button'
+                  onClick={() => moveTask('todo', 'ongoing', task)}>
                     Start
                   </button>
                   <button onClick={() => moveTask('todo', 'completed', task)}>
@@ -87,6 +98,10 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+              {tasklist.todo.length !== 0 && 
+              <button onClick={() => clearTasks('todo', tasklist.todo)}>
+                Clear All
+                </button>}
           </div>
           <div className="task-section">
             <h2>Ongoing Tasks</h2>
@@ -101,13 +116,19 @@ export default function Home() {
                     <button onClick={() => moveTask('ongoing', 'completed', task)}>
                       Done
                     </button>
-                    <button onClick={() => moveTask('ongoing', task)}>
+                    <button onClick={() => deleteTask('ongoing', task)}>
                       Delete
                     </button>
                   </span>
                 </li>
               ))}
             </ul>
+            {tasklist.ongoing.length !== 0 && 
+            <button 
+              className='clear-button'
+              onClick={() => clearTasks('ongoing', tasklist.ongoing)}>
+              Clear All
+              </button>}
           </div>
           <div className="task-section">
             <h2>Completed Tasks</h2>
@@ -122,13 +143,19 @@ export default function Home() {
                     <button onClick={() => moveTask('completed', 'ongoing', task)}>
                       Ongoing
                     </button>
-                    <button onClick={() => moveTask('completed', task)}>
+                    <button onClick={() => deleteTask('completed', task)}>
                       Delete
                     </button>
                   </span>
                 </li>
               ))}
             </ul>
+            {tasklist.completed.length !== 0 && 
+            <button 
+              className="clear-button"
+              onClick={() => clearTasks('completed', tasklist.completed)}>
+              Clear All
+              </button>}
           </div>
         </div>
     </div>
