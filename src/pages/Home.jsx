@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Home() {
 
   const [taskname, setTaskName] = useState('')
   const [tasklist, setTaskList] = useState({ todo: [], ongoing: [], completed: [] })
+
+  // Load tasks from local storage
+  useEffect(() => {
+    const storedTaskList = localStorage.getItem('taskList');
+    if (storedTaskList) {
+      setTaskList(JSON.parse(storedTaskList));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('taskList', JSON.stringify(tasklist));
+  }, [tasklist]);
 
   const handleInputChange = (event) => {
     setTaskName(event.target.value)
