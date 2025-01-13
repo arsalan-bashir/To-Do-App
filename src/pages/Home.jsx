@@ -3,20 +3,18 @@ import React, { useEffect, useState } from 'react'
 export default function Home() {
 
   const [taskname, setTaskName] = useState('')
-  const [tasklist, setTaskList] = useState({ todo: [], ongoing: [], completed: [] })
+  const [tasklist, setTaskList] = useState(() => {
+    // Load initial state from localStorage, or use default structure if no data exists
+    const savedTaskList = localStorage.getItem('tasklist');
+    return savedTaskList
+      ? JSON.parse(savedTaskList)
+      : { todo: [], ongoing: [], completed: [] };
+  });
 
-  // Load tasks from local storage
+  // Save task list to localStorage whenever it changes
   useEffect(() => {
-    const storedTaskList = localStorage.getItem('taskList');
-    if (storedTaskList) {
-      setTaskList(JSON.parse(storedTaskList));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('taskList', JSON.stringify(tasklist));
+    localStorage.setItem('tasklist', JSON.stringify(tasklist));
   }, [tasklist]);
-
   const handleInputChange = (event) => {
     setTaskName(event.target.value)
   }
