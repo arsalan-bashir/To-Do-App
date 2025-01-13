@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Home() {
 
-  const [taskname, setTaskName] = useState('')
+  var [taskname, setTaskName] = useState('')
   const [tasklist, setTaskList] = useState(() => {
     // Load initial state from localStorage, or use default structure if no data exists
     const savedTaskList = localStorage.getItem('tasklist');
@@ -22,11 +22,25 @@ export default function Home() {
 
   const addTask = () => {
     if (taskname.trim() !== '') {
-      setTaskList((prevTaskList) => ({
-        ...prevTaskList,
-        todo: [...prevTaskList.todo, taskname]
-      }));
-      setTaskName('');
+        taskname = taskname.charAt(0).toUpperCase() + taskname.slice(1);
+        setTaskList((prevTaskList) => {
+          
+        // Check if the task exists in any list (case-insensitive)
+        const taskExists = 
+        prevTaskList.todo.some(task => task.toLowerCase() === taskname.toLowerCase()) ||
+        prevTaskList.ongoing.some(task => task.toLowerCase() === taskname.toLowerCase()) ||
+        prevTaskList.completed.some(task => task.toLowerCase() === taskname.toLowerCase());
+
+        if (taskExists) {
+          alert('Task already exists!');
+          return prevTaskList; 
+        }
+          return {
+          ...prevTaskList,
+          todo: [...prevTaskList.todo, taskname]
+        };
+      });
+        setTaskName('');
     }
   };
 

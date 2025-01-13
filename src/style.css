@@ -5,7 +5,8 @@
 body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
-    background-color: #def7e6;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    min-height: 100vh;
   }
   
 .home {
@@ -13,7 +14,35 @@ body {
   }
 
 .heading {
-    text-align: center;
+    font-family: 'Copperplate', 'Copperplate Gothic Light', fantasy, 'Lucida Console', monospace;
+    font-size: 2.5rem;
+    color: #65064a;
+    letter-spacing: 5px;
+  }
+
+  @media screen and (max-width: 580px) {
+    .heading {
+      font-size: 1.9rem;
+      text-align: right;
+      letter-spacing: 3px;
+    }
+    
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap:10px;
+  
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
   }
   
 .task-form {
@@ -133,4 +162,34 @@ body {
   color: #f0e651;
   background-color: rgb(5, 5, 5);
   border-radius: 6px;
+}
+
+@media screen and (max-width: 950px) {
+    .task-sections {
+      flex-direction: column;
+    }
+  
+    .task-section {
+      width: 90%;
+      margin-bottom: 20px;
+    }
+
+    .task-section > button {
+      left: 80%;
+    }
+
+    .add-task-button {
+      padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .task-input {
+      width: 100%;
+    }
+  
+    .task-section > button {
+      left: 75%;
+    }
+  
 }
